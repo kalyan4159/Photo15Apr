@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:photo_app_flutter/insert_data_pages/photo_input_api.dart';
 import 'package:photo_app_flutter/insert_data_pages/photoinputclass.dart';
 import 'package:photo_app_flutter/pages/homepage.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -41,10 +43,15 @@ class _FormPageState extends State<FormPage> {
                   ),
         title: Center(
 
-          child: Text(
-            'Add Photo',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
-          ),
+        child: Text(
+  'Add Photo',
+  style: GoogleFonts.merriweatherSans(
+  
+    fontSize: 18,
+    fontWeight: FontWeight.w900,
+    
+  ),
+),
         ),
         content: Form(
          
@@ -63,7 +70,7 @@ class _FormPageState extends State<FormPage> {
                      ),
                   child: Row(
                     children: [
-                      SizedBox(width: textWidthSize, child: const Text('Photographer\'s Name',style: TextStyle(fontWeight: FontWeight.bold),)),
+                      SizedBox(width: textWidthSize, child: const Text('Photographer\'s Name',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13),)),
                       Expanded(
                         child: TextFormField(
                           controller: nameController,
@@ -75,13 +82,13 @@ class _FormPageState extends State<FormPage> {
                             }
                             return null;
                           },
-                          decoration:  InputDecoration(
+                           decoration:  InputDecoration(
+                           
                             contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0),
-
                             hintText: 'Enter text',
-                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.5)),
-                            border: OutlineInputBorder(
-                               borderSide: BorderSide(color: Colors.grey.withOpacity(0.5)),
+                            hintStyle: TextStyle(color:  Colors.grey.withOpacity(0.5)),
+                            enabledBorder: OutlineInputBorder(
+                               borderSide:  BorderSide(color: Colors.grey.withOpacity(0.5),),
                             ),
                             isDense: true,
                           ),
@@ -101,7 +108,7 @@ class _FormPageState extends State<FormPage> {
                      ),
                   child: Row(
                     children: [
-                      SizedBox(width: textWidthSize, child: const Text('Image URL',style: TextStyle(fontWeight: FontWeight.bold),)),
+                      SizedBox(width: textWidthSize, child: const Text('Image URL',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13),)),
                       Expanded(
                         child: TextFormField(
                           controller: imageURLController,
@@ -111,12 +118,13 @@ class _FormPageState extends State<FormPage> {
                             }
                             return null;
                           },
-                          decoration:  InputDecoration(
+                           decoration:  InputDecoration(
+                           
                             contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0),
                             hintText: 'Enter text',
-                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.5)),
-                            border: OutlineInputBorder(
-                               borderSide: BorderSide(color: Colors.grey.withOpacity(0.5)),
+                            hintStyle: TextStyle(color:  Colors.grey.withOpacity(0.5)),
+                            enabledBorder: OutlineInputBorder(
+                               borderSide:  BorderSide(color: Colors.grey.withOpacity(0.5),),
                             ),
                             isDense: true,
                           ),
@@ -136,7 +144,7 @@ class _FormPageState extends State<FormPage> {
                      ),
                   child: Row(
                     children: [
-                      SizedBox(width: textWidthSize, child: Text('Description',style: TextStyle(fontWeight: FontWeight.bold),)),
+                      SizedBox(width: textWidthSize, child: Text('Description',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13),)),
                       Expanded(
                         child: TextFormField(
                           controller: descriptionController,
@@ -150,9 +158,9 @@ class _FormPageState extends State<FormPage> {
                            
                             contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0),
                             hintText: 'Enter text',
-                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.5)),
-                            border: OutlineInputBorder(
-                               borderSide: BorderSide(color: Colors.grey.withOpacity(0.5)),
+                            hintStyle: TextStyle(color:  Colors.grey.withOpacity(0.5)),
+                            enabledBorder: OutlineInputBorder(
+                               borderSide:  BorderSide(color: Colors.grey.withOpacity(0.5),),
                             ),
                             isDense: true,
                           ),
@@ -172,15 +180,16 @@ class _FormPageState extends State<FormPage> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        color: myOrangeColor,
-                        padding: EdgeInsets.only(left:40,right:40,top:12,bottom:12),
+                      
+                        color: Color(0xffff6d00),
+                        padding: EdgeInsets.only(left:40,right:40,top:14,bottom:14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                           
                         ),
                         child: Text(
                           'CANCEL',
-                          style: TextStyle(color: Colors.white70),
+                          style: GoogleFonts.merriweatherSans(color: Colors.white,fontWeight: FontWeight.w800),
                         ),
                       ),
                       const SizedBox(width: 8.0),
@@ -229,14 +238,14 @@ class _FormPageState extends State<FormPage> {
                            
                           }
                         },
-                        color: myOrangeColor,
-                        padding: EdgeInsets.only(left:45,right: 45,top:12,bottom:12),
+                          color: Color(0xffff6d00),
+                        padding: EdgeInsets.only(left:50,right: 50,top:14,bottom:14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Text(
                           'ADD',
-                          style: TextStyle(color: Colors.white70),
+                          style: GoogleFonts.merriweatherSans(color: Colors.white,fontWeight: FontWeight.w700),
                         ),
                       ),
                     ],

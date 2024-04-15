@@ -69,227 +69,269 @@ class _HomePagePhotoState extends State<HomePagePhoto> {
       body:  Visibility(
         visible: isLoaded,
         
-      child: GridView.builder(
-        
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount:  MediaQuery.of(context).size.width < 600 ? 2 : MediaQuery.of(context).size.width < 800 ? 3 : 5,
-          crossAxisSpacing: 1, 
-          mainAxisSpacing: 2,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
         ),
-
-           
-          itemCount: retrievedata?.length,
-          itemBuilder: (context, index) {
-            return Container(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-
-                  Container(
-                    height: 200,
-                    width: 200,
-                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                   image: DecorationImage(
-                        image: NetworkImage(retrievedata![index].imageUrl),
-                         fit: BoxFit.cover,
-
-                         
-                         ),
-                   ),
-                  
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        
-                       children: [
-                        
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            
-                            children: [
-                            IconButton(
-                                onPressed: () async {
-                                bool likedState = retrievedata![index].isLiked;
-                              setState(() {
-                              retrievedata![index].isLiked = !likedState;
-                               });
-                             await UpdateApi().updateIsLiked(retrievedata![index].id, !likedState);
-                                 },
-                             icon: Icon(
-                           Icons.favorite,
-                           color: retrievedata![index].isLiked ? Colors.red : myOrangeColor,
-                          ),
-                          ),
-
-
-                           
-                             IconButton(
-                            onPressed: () {
-                               showDialog(
-                               context: context,
-                        builder: (BuildContext context) {
-                                 return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                                  
-                               title: Center(child: Text('Confirm',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),),
-
-                                content:Container(
-                                 
-                                height: 110,
-                                width:160,
-                                decoration: BoxDecoration(
-                                   borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                 
-                                
-                                     child:Column(
-                                      
-                                children: [
-                                 Text('Sure you want to delete the selected photo?',style: TextStyle(fontWeight: FontWeight.bold),),
-                       Padding(
-                         padding: const EdgeInsets.all(16.0),
-                    
-                       ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      
-                      children: [
-                        MaterialButton(onPressed: (){
-                               Navigator.of(context).pop();
-                             },
-                             color: myOrangeColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                             child: Text('CANCEL',style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),),
-                    
-                              MaterialButton(onPressed: () async{
-                               
-                                  
-                     await  DeleteApi().deleteUser(retrievedata![index].id);
-                     showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                    
-                                content: Text('Deleted Sucessfullly'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => HomePagePhoto(),
-                            ),
-                          );
-                                      
-                                    },
-                                    child: Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );                   
-                          
-                    
-                            },color: Colors.red,
-                           
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),child: Text('DELETE',style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),),
-                      ],
-                    ),
-                           
-              ],
-            ),
-          ),
+        child: GridView.builder(
           
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount:  MediaQuery.of(context).size.width < 600 ? 2 : MediaQuery.of(context).size.width < 800 ? 3 : 5,
+            crossAxisSpacing: 1, 
+            mainAxisSpacing: 2,
+          ),
+        
+             
+            itemCount: retrievedata?.length,
+            itemBuilder: (context, index) {
+              return Container(
+              
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  children: [
+        
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+  clipBehavior: Clip.antiAlias,
+                      child: Container(
+                        height: 200,
+                        width: 190,
+                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                       image: DecorationImage(
+                            image: NetworkImage(retrievedata![index].imageUrl),
+                             fit: BoxFit.cover,
+                              
+                             
+                             ),
+                       ),
+                      
+                                        child: Column(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            
+                           children: [
+                            
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                
+                                children: [
+                                IconButton(
+                                    onPressed: () async {
+                                    bool likedState = retrievedata![index].isLiked;
+                                  setState(() {
+                                  retrievedata![index].isLiked = !likedState;
+                                   });
+                                 await UpdateApi().updateIsLiked(retrievedata![index].id, !likedState);
+                                     },
+                                 icon: Icon(
+                               Icons.favorite, size: 30,
+                               color: retrievedata![index].isLiked ? Colors.red : Color.fromRGBO(252, 249, 249, 1),
+                              ),
+                              ),
+                              
+                              
+                               
+                                 IconButton(
+                                onPressed: () {
+                                   showDialog(
+                                   context: context,
+                            builder: (BuildContext context) {
+                                     return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        side: BorderSide(color: Colors.grey, width: 2.0),
+                      ),
+                                      
+                                   title: Center(child: Text('Confirm',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),),
+                              
+                                    content:Container(
+                                     
+                                    height: 110,
+                                    width:160,
+                                    decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                     
+                                    
+                                         child:Column(
+                                          
+                                    children: [
+                                     Text('Sure you want to delete the selected photo?',style: TextStyle(fontWeight: FontWeight.bold),),
+                           Padding(
+                             padding: const EdgeInsets.all(16.0),
+                        
+                           ),
+                              
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          
+                          children: [
+                            MaterialButton(onPressed: (){
+                                   Navigator.of(context).pop();
+                                 },
+                                 color: myOrangeColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                                 child: Text('CANCEL',style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),),
+                        
+                                  MaterialButton(
+  onPressed: () async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            AlertDialog(
+              content: Text('Deleting...'),
+            ),
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+          ],
+        );
+      },
+    );
+
+    await DeleteApi().deleteUser(retrievedata![index].id);
+
+    Navigator.of(context).pop(); // Close the dialog
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text('Deleted Successfully'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => HomePagePhoto(),
+                  ),
+                );
+              },
+              child: Text('Close'),
+            ),
+          ],
         );
       },
     );
   },
-  icon: Icon(Icons.delete),
   color: Colors.red,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(5.0),
+  ),
+  child: Text('DELETE', style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
 ),
 
 
-
-                             
-                               
-                            ],
-                          ),
+                          ],
                         ),
-                       
-                       ],
-                      )),
-
-
-                    
-                    Container(
-                      color: Colors.black.withOpacity(0.7),
-                      child: Expanded(
-                        
-                        child: Padding(
-                          
-                        padding: const EdgeInsets.all(8.0),
-                      
-                        child: Column(
-                          
-                          mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                             
-                            
-                            
-                            children: [
-                             
-                           Text(
-                               retrievedata![index].description,
-                                    maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                         style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
-                                           ),    
-                                            Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(retrievedata![index].createdDate.substring(8,10)+' '+retrievedata![index].createdDate.substring(4,7)+','+retrievedata![index].createdDate.substring(11,15),style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
-                              Row(
-                                children: [
-                                  Text(" ~by ",style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
-                                  Text(retrievedata![index].name,style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
+                               
+                                      ],
+                                    ),
+                                  ),
+                                  
+                                );
+                              },
+                                  );
+                                },
+                                icon: Icon(Icons.delete),
+                                color: Colors.red, iconSize: 30,
+                              ),
+                              
+                              
+                              
+                                 
+                                   
                                 ],
                               ),
-                            ],
-                          ),  
-                            ],
+                            ),
+                           
+                           ],
+                          )),
+                              
+                              
+                        
+                        Container(
+                      
+                          color: Colors.black.withOpacity(0.5),
+                          
+                         
+                          
+                      
+                          
+                          child: Padding(
+                            
+                          padding: const EdgeInsets.only(
+                            top: 5,
+                            right: 12,
+                            left:12,
+                            bottom:5,
+                          ),
+                                                  
+                          child: Column(
+                            
+                            
+                            mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                               
+                              children: [
+                               
+                             Padding(
+                               padding: const EdgeInsets.only(
+                                bottom: 10,
+                               ),
+                               child: Text(   
+                                   retrievedata![index].description,
+                                        maxLines: 2,
+                                                         overflow: TextOverflow.ellipsis,
+                                                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                                               ),
+                             ),    
+                                              Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(retrievedata![index].createdDate.substring(8,10)+' '+retrievedata![index].createdDate.substring(4,7)+','+retrievedata![index].createdDate.substring(11,15),style: TextStyle(color: Colors.white70,fontSize: 13),),
+                                Row(
+                                  children: [
+                                    Text(" ~by ",style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
+                                    Text(retrievedata![index].name,style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ],
+                            ),  
+                              ],
+                          ),
+                                                  ),
                         ),
-                      )),
+                      ],
+                                        ),
+                        
+                      ),
                     ),
                   ],
                 ),
-                    
-                  ),
-                ],
-              ),
-                        );
-                        
-          },
-         
-        ),
+                          );
+                          
+            },
+           
+          ),
+      ),
         replacement: const Center(
             child: CircularProgressIndicator(),
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
         showDialog(context: context, builder: (context) {
-          return FormPage();
+          return Center(child: FormPage());
         });
       },
       backgroundColor: myOrangeColor,
